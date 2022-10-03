@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+body {
+ 
+
+  .container {
+    max-width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 35px;
+    margin: 0 auto;
+    padding: 40px 0;
+
+    .card {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      margin: 0 auto;
+      background: #000;
+      border-radius: 15px;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
+      .content{
+        margin-left: 1rem;
+      }
+      .java{
+        color: #fff;
+      }
+      .face {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
+        &.face1 {
+          box-sizing: border-box;
+          padding: 20px;
+
+          h2 {
+            margin: 0;
+            padding: 0;
+          }
+
+
+          .cSharp {
+            background-color: #fff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+        &.face2 {
+          transition: 0.5s;
+
+          h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 10em;
+            color: #fff;
+            transition: 0.5s;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+          }
+        }
+      }
+    }
+
+    .card:hover .face.face2 {
+      height: 60px;
+
+      h2 {
+        font-size: 2em;
+      }
+    }
+
+    .card:nth-child(1) .face.face2 {
+      background-image: linear-gradient(90deg, #050505, #fff);
+      border-radius: 15px;
+    }
+
+    .card:nth-child(2) .face.face2 {
+      background-image: linear-gradient(90deg, transparent, #fff);
+      border-radius: 15px;
+    }
+
+    .card:nth-child(3) .face.face2 {
+      background-image: linear-gradient(90deg, transparent, #fff);
+      border-radius: 15px;
+    }
+  }
+}
