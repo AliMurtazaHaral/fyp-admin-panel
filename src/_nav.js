@@ -76,28 +76,14 @@ const _nav = [
     to: '/vendor-section/manageVendor',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: 'Charts',
-    to: '/charts',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },
+  
   {
     component: CNavItem,
     name: 'Delete Vendor',
     to: 'vendor-section/deleteVendor',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: 'Widgets',
-    to: '/widgets',
-    icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
+  
   {
     component: CNavTitle,
     name: 'Rider Management',

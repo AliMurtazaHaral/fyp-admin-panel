@@ -19,7 +19,7 @@ const WidgetsDropdown = () => {
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
-          color="primary"
+          style={{backgroundColor: 'black'}}
           value={
             <>
               26K{' '}
@@ -106,7 +106,7 @@ const WidgetsDropdown = () => {
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
-          color="info"
+          style={{backgroundColor: 'black'}}
           value={
             <>
               $6.200{' '}
@@ -192,7 +192,7 @@ const WidgetsDropdown = () => {
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
-          color="warning"
+          style={{backgroundColor: 'black'}}
           value={
             <>
               2.49{' '}
@@ -265,7 +265,8 @@ const WidgetsDropdown = () => {
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
-          color="danger"
+          
+          style={{backgroundColor: 'black'}}
           value={
             <>
               44K{' '}
