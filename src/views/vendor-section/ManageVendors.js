@@ -48,7 +48,51 @@ function ManageVendors() {
                         <div class="col col-4">Action</div>
                         <div class="col col-5">Action</div>
                     </li>
+                    <li class="table-row">
+                                        <div class="col col-1" data-label="Name">Syed Faizan Raza</div>
+                                        <div class="col col-2" data-label="Shope Name">Syed AutoMobile</div>
+                                        <div class="col col-3" data-label="Action"><button onClick={() => { updateData(id) }}>
+                                            APPROVE
+                                        </button></div>
+                                        <div class="col col-4" data-label="Action"><button onClick={() => { deleteData(id) }}>
+                                            DISAPPROVE
+                                        </button></div>
+                                        <div class="col col-5" data-label="Action"><button onClick={() => { setToggle(true) }}>
 
+                                            View More
+                                        </button></div>
+
+                                    </li>
+                                    <li class="table-row">
+                                        <div class="col col-1" data-label="Name">Ali Murtaza Haral</div>
+                                        <div class="col col-2" data-label="Shope Name">Haral Dealers</div>
+                                        <div class="col col-3" data-label="Action"><button onClick={() => { updateData(id) }}>
+                                            APPROVE
+                                        </button></div>
+                                        <div class="col col-4" data-label="Action"><button onClick={() => { deleteData(id) }}>
+                                            DISAPPROVE
+                                        </button></div>
+                                        <div class="col col-5" data-label="Action"><button onClick={() => { setToggle(true) }}>
+
+                                            View More
+                                        </button></div>
+
+                                    </li>
+                                    <li class="table-row">
+                                        <div class="col col-1" data-label="Name">Ameer Hamza Abbasi</div>
+                                        <div class="col col-2" data-label="Shope Name">Abbasi Spare parts</div>
+                                        <div class="col col-3" data-label="Action"><button onClick={() => { updateData(id) }}>
+                                            APPROVE
+                                        </button></div>
+                                        <div class="col col-4" data-label="Action"><button onClick={() => { deleteData(id) }}>
+                                            DISAPPROVE
+                                        </button></div>
+                                        <div class="col col-5" data-label="Action"><button onClick={() => { setToggle(true) }}>
+
+                                            View More
+                                        </button></div>
+
+                                    </li>
                     {vendorData?.map(({ id, data }) => (
                         <>
                             {data.status === "Not Checked" ?
