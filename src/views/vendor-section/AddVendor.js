@@ -6,6 +6,7 @@ import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 const storage = getStorage();
 function AddVendor() {
     const [imageUpload, setImageUpload] = useState(null);
+    const [shopImageUpload, setShopImageUpload] = useState(null);
     const [fullName, setFullName] = useState("");
     const [city, setCity] = useState("");
     const [address, setAddress] = useState("");
@@ -32,6 +33,8 @@ function AddVendor() {
             profession: "Vendor",
             status: "Not Checked",
             cnic: cnic,
+            rating: "0",
+            shopImageReference: shopImageUpload
         });
         alert("Data has been added successfully");
     }
@@ -39,7 +42,15 @@ function AddVendor() {
         if (imageUpload == null) return;
         const imageRef = ref(storage, `profileImages/${imageUpload.name}`);
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
+            setImageUpload(imageUpload.name);
             console.log("Image has been uploaded")
+        });
+    };
+    const uploadShopImage = () => {
+        if (shopImageUpload == null) return;
+        const imageRef = ref(storage, `shopImages/${shopImageUpload.name}`);
+        uploadBytes(imageRef, imageUpload).then((snapshot) => {
+            setShopImageUpload(shopImageUpload.name);
         });
     };
     const uploadfiles = () => {
@@ -47,6 +58,11 @@ function AddVendor() {
       };
       const handleInputChange = (event) => {
         setImageUpload(event.target.files[0]);
+        uploadFile();
+      };
+      const handleShopChange = (event) => {
+        setShopImageUpload(event.target.files[0]);
+        uploadShopImage();
       };
     return (
         <CContainer>
@@ -101,7 +117,7 @@ function AddVendor() {
                             border: "none",
                             
                         }}
-                        onClick={uploadfiles.bind(this)}
+                        onClick={()=>{uploadfiles()}}
                     >
                         {" "}
                         Add Profile Image{" "}
@@ -110,10 +126,30 @@ function AddVendor() {
                         type="file"
                         id="selectFile"
                         style={{ display: "none" }}
-                        onClick={handleInputChange}
+                        onClick={()=>{handleInputChange()}}
+                    />
+                    <br/>
+                    <button
+                        style={{
+                            fontSize: "30px",
+                            color: "white",
+                            background: "#000",
+                            border: "none",
+                            
+                        }}
+                        onClick={()=>{uploadfiles()}}
+                    >
+                        {" "}
+                        Add Shop Image{" "}
+                    </button>
+                    <input
+                        type="file"
+                        id="selectFile"
+                        style={{ display: "none" }}
+                        onClick={()=>{handleShopChange()}}
                     />
                     <br></br>
-                    <button onClick={saveDatatoFirebase}>
+                    <button onClick={()=>{saveDatatoFirebase()}}>
                         <span></span>
                         <span></span>
                         <span></span>

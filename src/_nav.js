@@ -42,46 +42,28 @@ const _nav = [
     to: '/mechanic-section/viewMechanic',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: 'Edit Mechanic',
-    to: '/mechanic-section/updateMechanic',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Delete Mechanic',
-    to: '/mechanic-section/deleteMechanic',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
+ 
   {
     component: CNavTitle,
-    name: 'Vendor Shop Management',
+    name: 'Spare Parts Shop Management',
   },
   {
     component: CNavItem,
-    name: 'Add A New Vendor',
+    name: 'Add A New Shop',
     to: '/vendor-section/addVendor',
     icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'View Vendors',
+    name: 'View Shops',
     to: '/vendor-section/viewVendor',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Manage Vendor',
+    name: 'Manage Shops',
     to: '/vendor-section/manageVendor',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
-  },
-  
-  {
-    component: CNavItem,
-    name: 'Delete Vendor',
-    to: 'vendor-section/deleteVendor',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
   },
   
   {
@@ -98,6 +80,12 @@ const _nav = [
     component: CNavItem,
     name: 'View Riders',
     to: '/rider-section/viewRider',
+    icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Manage Riders',
+    to: '/rider-section/manageRider',
     icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
   },
   

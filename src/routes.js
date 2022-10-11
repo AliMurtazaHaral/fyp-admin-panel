@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 
 // Mechanic Section
@@ -17,6 +18,7 @@ const DeleteVendor = React.lazy(() => import('./views/vendor-section/DeleteVendo
 // Rider Section
 const AddRider = React.lazy(()=> import('./views/rider-section/AddRider'))
 const ViewRider = React.lazy(()=> import('./views/rider-section/ViewRider'))
+const ManageRider = React.lazy(() => import('./views/rider-section/ManageRider'))
 
 const Charts = React.lazy(() => import('./views/charts/Charts'))
 
@@ -39,7 +41,8 @@ const routes = [
   { path: '/vendor-section/deleteVendor', name: 'Delete A Vendor', element: DeleteVendor },
 
   {path: '/rider-section/addRider', name:'Add A New Rider', element: AddRider},
-  {path: '/rider-section/viewRider', name:'View Rider', element: ViewRider}
+  {path: '/rider-section/viewRider', name:'View Rider', element: ViewRider},
+  {path: '/rider-section/manageRider', name:'Manage Rider', element: ManageRider}
 ]
 
 export default routes

@@ -40,24 +40,7 @@ function ViewMechanic() {
             <div class="col col-4">Rating</div>
             <div class="col col-5">Action</div>
           </li>
-          <li class="table-row">
-                    <div class="col col-1" data-label="Name">Syed Faizan Raza</div>
-                    <div class="col col-2" data-label="City">Islamabad</div>
-                    <div class="col col-3" data-label="category">Automobile Mechanic</div>
-                    <div class="col col-4" data-label="Rating">5 Star</div>
-                    <div class="col col-5" data-label="Action"><button onClick={() => { deleteData(id); }}>
-                      Delete
-                    </button></div>
-                  </li>
-                  <li class="table-row">
-                    <div class="col col-1" data-label="Name">Ameer Hamza Abbasi</div>
-                    <div class="col col-2" data-label="City">Rawalpindi</div>
-                    <div class="col col-3" data-label="category">Bike Mechanic</div>
-                    <div class="col col-4" data-label="Rating">5 Star</div>
-                    <div class="col col-5" data-label="Action"><button onClick={() => { deleteData(id); }}>
-                      Delete
-                    </button></div>
-                  </li>
+          
           {mechanicData?.map(({ id, data }) => (
             <>
               {data.profession === "Mechanic" ?

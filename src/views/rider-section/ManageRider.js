@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import '../../scss/ViewTable.scss';
-import './ViewVendor.scss';
+
 import db from '../../firebase/Config';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import ApproveVendors from "./ApproveVendor";
+
 import { Navigate } from "react-router-dom";
 const storage = getStorage();
-function ManageVendors() {
+function ManageRider() {
     const [vendorData, setVendorData] = useState([]);
     const [toggle, setToggle] = useState(false);
     var [imgUrl, setImgUrl] = useState("");
@@ -43,7 +43,7 @@ function ManageVendors() {
                 <ul class="responsive-table">
                     <li class="table-header">
                         <div class="col col-1">Name</div>
-                        <div class="col col-2">Shop Name</div>
+                        <div class="col col-2">Bike Number</div>
                         <div class="col col-3">Action</div>
                         <div class="col col-4">Action</div>
                         <div class="col col-5">Action</div>
@@ -51,8 +51,9 @@ function ManageVendors() {
                   
                     {vendorData?.map(({ id, data }) => (
                         <>
-                            {data.status === "Not Checked" ?
+                            {data.profession === "Rider" ?
                                 <>
+                                {data.status === "Not Checked" ?
                                     <li class="table-row">
                                         <div class="col col-1" data-label="Name">{data.fullName}</div>
                                         <div class="col col-2" data-label="Shope Name">{data.shopName}</div>
@@ -67,7 +68,7 @@ function ManageVendors() {
                                             View More
                                         </button></div>
 
-                                    </li>
+                                    </li>:null}
                                     {toggle === true ?
                                         <>
                                             <div class="container">
@@ -108,4 +109,4 @@ function ManageVendors() {
     );
 }
 
-export default ManageVendors;
+export default ManageRider;

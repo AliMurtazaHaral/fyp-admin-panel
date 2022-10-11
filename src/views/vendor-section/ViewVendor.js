@@ -49,7 +49,11 @@ function ViewVendor() {
                     </li>
 
                     {vendorData?.map(({ id, data }) => (
+                        
                         <>
+                        {data.profession === "Vendor" ?
+                        <>
+                            {data.status === "Not Checked" ?
                             <li class="table-row">
                                 <div class="col col-1" data-label="Name">{data.fullName}</div>
                                 <div class="col col-2" data-label="City">{data.city}</div>
@@ -59,8 +63,8 @@ function ViewVendor() {
                                     
                                     Delete
                                 </button></div>
-                            </li>
-
+                            </li>:null}
+                            </>:null}
                         </>
                     ))}
                 </ul>
