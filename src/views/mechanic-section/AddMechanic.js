@@ -6,6 +6,7 @@ import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import '../../scss/AddEntry.css';
 import db from '../../firebase/Config';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getStorage, ref, getDownloadURL,uploadBytes } from "firebase/storage";
 const storage = getStorage();
 function AddMechanic() {
@@ -13,6 +14,7 @@ function AddMechanic() {
   const [imageUpload, setImageUpload] = useState(null);
   const [fullName, setFullName] = useState("");
   const [city, setCity] = useState("");
+  const [uiid, setUiid] = useState("");
   const [cnic, setCNIC] = useState("");
   const [email, setEmail] = useState("");
   const [category, setCategory] = useState("");
@@ -28,11 +30,24 @@ function AddMechanic() {
     cnic: "",
   });
 
-
+  const auth = getAuth();
   const saveDatatoFirebase = (e) => {
     e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        setUiid(userCredential.user.uid);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+      
     uploadFile();
-    db.collection("users").add({
+    db.collection("users").doc(uiid).set({
       fullName: fullName,
       email: email,
       city: city,
@@ -62,6 +77,7 @@ function AddMechanic() {
   return (
     <div className="">
       <CContainer>
+        
         <div class="login-box">
           <h2>Add Mechanic</h2>
           <form>
@@ -97,25 +113,10 @@ function AddMechanic() {
               <input type="password" name="" required="" />
               <label>Confirm Password</label>
             </div>
-            <button
-                        style={{
-                            fontSize: "30px",
-                            color: "white",
-                            background: "#000",
-                            border: "none",
-                            
-                        }}
-                        onClick={uploadfiles.bind(this)}
-                    >
-                        {" "}
-                        Add Profile Image{" "}
-                    </button>
-                    <input
-                        type="file"
-                        id="selectFile"
-                        style={{ display: "none" }}
-                        onClick={handleInputChange}
-                    />
+            <label>Add Profile Picture</label>
+          
+      <input type='file' onChange={(event)=>{setImageUpload(event.target.files[0])}} className="form-control"></input>
+          
                     <br></br>
             
             <button onClick={saveDatatoFirebase}>
@@ -129,7 +130,8 @@ function AddMechanic() {
         </div>
       </CContainer>
     </div>
-  )
+  );
+  
 }
 
 export default AddMechanic

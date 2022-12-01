@@ -6,7 +6,7 @@ import '../../scss/ViewTable.scss'
 const storage = getStorage();
 function ViewMechanic() {
   const [mechanicData, setMechanicData] = useState([]);
-  var [imgUrl, setImgUrl] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) => {
       setMechanicData(
@@ -49,7 +49,7 @@ function ViewMechanic() {
                     <div class="col col-1" data-label="Name">{data.fullName}</div>
                     <div class="col col-2" data-label="City">{data.city}</div>
                     <div class="col col-3" data-label="category">{data.category}</div>
-                    <div class="col col-4" data-label="Rating">5 Star</div>
+                    <div class="col col-4" data-label="Rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     <div class="col col-5" data-label="Action"><button onClick={() => { deleteData(id); }}>
                       Delete
                     </button></div>

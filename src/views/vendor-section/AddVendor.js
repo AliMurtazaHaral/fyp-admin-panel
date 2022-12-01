@@ -2,6 +2,7 @@ import { CContainer } from "@coreui/react";
 import React, { useState } from "react";
 import '../../scss/AddEntry.css';
 import db from '../../firebase/Config';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 const storage = getStorage();
 function AddVendor() {
@@ -16,10 +17,22 @@ function AddVendor() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [mobileNumber, setMobileNumber] = useState("");
-
+    const auth = getAuth();
     const saveDatatoFirebase = (e) => {
         e.preventDefault();
+        createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
         uploadFile();
+        uploadShopImage();
         db.collection("users").add({
             fullName: fullName,
             email: email,
@@ -31,9 +44,9 @@ function AddVendor() {
             password: password,
             profileImageReference: imageUpload,
             profession: "Vendor",
-            status: "Not Checked",
+            status: "Checked",
             cnic: cnic,
-            rating: "0",
+            rating: "5",
             shopImageReference: shopImageUpload
         });
         alert("Data has been added successfully");
@@ -109,45 +122,12 @@ function AddVendor() {
                         <input type="password" name="" required="" />
                         <label>Confirm Password</label>
                     </div>
-                    <button
-                        style={{
-                            fontSize: "30px",
-                            color: "white",
-                            background: "#000",
-                            border: "none",
-                            
-                        }}
-                        onClick={()=>{uploadfiles()}}
-                    >
-                        {" "}
-                        Add Profile Image{" "}
-                    </button>
-                    <input
-                        type="file"
-                        id="selectFile"
-                        style={{ display: "none" }}
-                        onClick={()=>{handleInputChange()}}
-                    />
+                    <label>Add Profile Picture</label>    
+      <input type='file' onChange={(event)=>{setImageUpload(event.target.files[0])}} className="form-control"></input>
                     <br/>
-                    <button
-                        style={{
-                            fontSize: "30px",
-                            color: "white",
-                            background: "#000",
-                            border: "none",
-                            
-                        }}
-                        onClick={()=>{uploadfiles()}}
-                    >
-                        {" "}
-                        Add Shop Image{" "}
-                    </button>
-                    <input
-                        type="file"
-                        id="selectFile"
-                        style={{ display: "none" }}
-                        onClick={()=>{handleShopChange()}}
-                    />
+                    <label>Add Shop Picture</label>    
+      <input type='file' onChange={(event)=>{setShopImageUpload(event.target.files[0])}} className="form-control"></input>
+                    
                     <br></br>
                     <button onClick={()=>{saveDatatoFirebase()}}>
                         <span></span>

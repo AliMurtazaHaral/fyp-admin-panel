@@ -1,7 +1,7 @@
 import { CContainer } from "@coreui/react";
 import React, { useState } from "react";
 import '../../scss/AddEntry.css';
-
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import db from '../../firebase/Config';
 import { getStorage, ref, getDownloadURL,uploadBytes } from "firebase/storage";
 const storage = getStorage();
@@ -15,9 +15,20 @@ function AddRider() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [mobileNumber, setMobileNumber] = useState("");
-
+    const auth = getAuth();
     const saveDatatoFirebase = (e) => {
         e.preventDefault();
+        createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
         uploadFile();
         db.collection("users").add({
             fullName: fullName,
@@ -30,6 +41,7 @@ function AddRider() {
             profession: "Rider",
             profileImageReference: imageUpload,
             cnic: cnic,
+            rating:'5'
         });
         alert("Data has been added successfully");
     }
@@ -88,25 +100,9 @@ function AddRider() {
                         <input type="password" name="" required="" />
                         <label>Confirm Password</label>
                     </div>
-                    <button
-                        style={{
-                            fontSize: "30px",
-                            color: "white",
-                            background: "#000",
-                            border: "none",
-                            
-                        }}
-                        onClick={uploadfiles.bind(this)}
-                    >
-                        {" "}
-                        Add Profile Image{" "}
-                    </button>
-                    <input
-                        type="file"
-                        id="selectFile"
-                        style={{ display: "none" }}
-                        onClick={handleInputChange}
-                    />
+                    <label>Add Profile Picture</label>
+          
+      <input type='file' onChange={(event)=>{setImageUpload(event.target.files[0])}} className="form-control"></input>
                     <br></br>
                     <button onClick={saveDatatoFirebase}>
                         <span></span>

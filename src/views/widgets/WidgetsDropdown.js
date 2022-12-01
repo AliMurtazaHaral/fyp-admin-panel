@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import {
   CRow,
   CCol,
@@ -12,8 +12,38 @@ import { getStyle } from '@coreui/utils'
 import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
 import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
-
+import db from '../../firebase/Config'
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 const WidgetsDropdown = () => {
+  const [totalUsers, setTotalUsers] = useState([]);
+  const [totalProducts, setTotalProducts] = useState([]);
+  const [totalShopedProducts, setTotalShopedProducts] = useState([]);
+  useEffect(() => {
+    db.collection("users").onSnapshot((snapshot) => {
+      setTotalUsers(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+    db.collection("products").onSnapshot((snapshot) => {
+      setTotalProducts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+    db.collection("shoped_products").onSnapshot((snapshot) => {
+      setTotalShopedProducts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
   return (
     <CRow>
       <CCol sm={6} lg={3}>
@@ -22,7 +52,7 @@ const WidgetsDropdown = () => {
           style={{backgroundColor: 'black'}}
           value={
             <>
-              26K{' '}
+              {totalUsers.length}{' '}
               <span className="fs-6 fw-normal">
                 (-12.4% <CIcon icon={cilArrowBottom} />)
               </span>
@@ -109,13 +139,13 @@ const WidgetsDropdown = () => {
           style={{backgroundColor: 'black'}}
           value={
             <>
-              $6.200{' '}
+              {totalProducts.length}{' '}
               <span className="fs-6 fw-normal">
                 (40.9% <CIcon icon={cilArrowTop} />)
               </span>
             </>
           }
-          title="Income"
+          title="Total Products"
           action={
             <CDropdown alignment="end">
               <CDropdownToggle color="transparent" caret={false} className="p-0">
@@ -195,13 +225,13 @@ const WidgetsDropdown = () => {
           style={{backgroundColor: 'black'}}
           value={
             <>
-              2.49{' '}
+              {totalShopedProducts.length}{' '}
               <span className="fs-6 fw-normal">
                 (84.7% <CIcon icon={cilArrowTop} />)
               </span>
             </>
           }
-          title="Conversion Rate"
+          title="Shoped Products"
           action={
             <CDropdown alignment="end">
               <CDropdownToggle color="transparent" caret={false} className="p-0">
