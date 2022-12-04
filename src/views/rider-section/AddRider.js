@@ -14,6 +14,7 @@ function AddRider() {
     const [cnic, setCNIC] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [uiid, setUiid] = useState("");
     const [mobileNumber, setMobileNumber] = useState("");
     const auth = getAuth();
     const saveDatatoFirebase = (e) => {
@@ -22,6 +23,7 @@ function AddRider() {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        setUiid(user.uid);
         // ...
       })
       .catch((error) => {
@@ -30,7 +32,20 @@ function AddRider() {
         // ..
       });
         uploadFile();
-        db.collection("users").add({
+        db.collection("users").doc(auth.currentUser.uid).set({
+            fullName: fullName,
+            email: email,
+            address: address,
+            city: city,
+            bikeNumber: bikeNumber,
+            mobileNumber: mobileNumber,
+            password: password,
+            profession: "Rider",
+            profileImageReference: imageUpload,
+            cnic: cnic,
+            rating:'5'
+        });
+        db.collection("users").doc(auth.currentUser.uid).set({
             fullName: fullName,
             email: email,
             address: address,

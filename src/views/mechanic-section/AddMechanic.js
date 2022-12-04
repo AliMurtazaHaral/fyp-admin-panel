@@ -29,15 +29,14 @@ function AddMechanic() {
     profession: "",
     cnic: "",
   });
-
+  const user = null;
   const auth = getAuth();
   const saveDatatoFirebase = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
-        setUiid(userCredential.user.uid);
+        user = userCredential.user;
         // ...
       })
       .catch((error) => {
@@ -47,7 +46,7 @@ function AddMechanic() {
       });
       
     uploadFile();
-    db.collection("users").doc(uiid).set({
+    db.collection("users").doc(auth.currentUser.uid).set({
       fullName: fullName,
       email: email,
       city: city,
@@ -57,6 +56,19 @@ function AddMechanic() {
       profession: "Mechanic",
       profileImageReference: imageUpload.name,
       cnic: cnic,
+      rating: '5'
+    });
+    db.collection("users").doc(auth.currentUser.uid).set({
+      fullName: fullName,
+      email: email,
+      city: city,
+      mobileNumber: mobileNumber,
+      password: password,
+      category: category,
+      profession: "Mechanic",
+      profileImageReference: imageUpload.name,
+      cnic: cnic,
+      rating: '5'
     });
     alert("Data has been added successfully");
   }
