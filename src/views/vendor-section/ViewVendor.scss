@@ -68,27 +68,8 @@ body {
       }
     }
 
-    .card:hover .face.face2 {
-      height: 60px;
+    
 
-      h2 {
-        font-size: 2em;
-      }
-    }
-
-    .card:nth-child(1) .face.face2 {
-      background-image: linear-gradient(90deg, #050505, #fff);
-      border-radius: 15px;
-    }
-
-    .card:nth-child(2) .face.face2 {
-      background-image: linear-gradient(90deg, transparent, #fff);
-      border-radius: 15px;
-    }
-
-    .card:nth-child(3) .face.face2 {
-      background-image: linear-gradient(90deg, transparent, #fff);
-      border-radius: 15px;
-    }
+    
   }
 }

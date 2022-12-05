@@ -21,20 +21,20 @@ function AddVendor() {
     const auth = getAuth();
     const saveDatatoFirebase = (e) => {
         e.preventDefault();
+        
         createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        setUiid(user.uid);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
-        uploadFile();
-        uploadShopImage();
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                setUiid(user.uid);
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
+        
         db.collection("users").doc(auth.currentUser.uid).set({
             fullName: fullName,
             email: email,
@@ -51,23 +51,7 @@ function AddVendor() {
             rating: "5",
             shopImageReference: shopImageUpload
         });
-        db.collection("users").doc(auth.currentUser.uid).set({
-            fullName: fullName,
-            email: email,
-            address: address,
-            city: city,
-            shopName: shopName,
-            shopRegistrationNumber: shopRegistrationNumber,
-            mobileNumber: mobileNumber,
-            password: password,
-            profileImageReference: imageUpload,
-            profession: "Vendor",
-            status: "Checked",
-            cnic: cnic,
-            rating: "5",
-            shopImageReference: shopImageUpload
-        });
-        alert("Data has been added successfully");
+        
     }
     const uploadFile = () => {
         if (imageUpload == null) return;
@@ -86,15 +70,15 @@ function AddVendor() {
     };
     const uploadfiles = () => {
         document.getElementById("selectFile").click();
-      };
-      const handleInputChange = (event) => {
+    };
+    const handleInputChange = (event) => {
         setImageUpload(event.target.files[0]);
         uploadFile();
-      };
-      const handleShopChange = (event) => {
+    };
+    const handleShopChange = (event) => {
         setShopImageUpload(event.target.files[0]);
         uploadShopImage();
-      };
+    };
     return (
         <CContainer>
             <div class="login-box">
@@ -140,14 +124,35 @@ function AddVendor() {
                         <input type="password" name="" required="" />
                         <label>Confirm Password</label>
                     </div>
-                    <label>Add Profile Picture</label>    
-      <input type='file' onChange={(event)=>{setImageUpload(event.target.files[0])}} className="form-control"></input>
-                    <br/>
-                    <label>Add Shop Picture</label>    
-      <input type='file' onChange={(event)=>{setShopImageUpload(event.target.files[0])}} className="form-control"></input>
-                    
+                    <label>Add Profile Picture</label>
+                    <input type='file' onChange={(event) => { setImageUpload(event.target.files[0]) }} className="form-control"></input>
+                    <br />
+                    <label>Add Shop Picture</label>
+                    <input type='file' onChange={(event) => { setShopImageUpload(event.target.files[0]) }} className="form-control"></input>
+
                     <br></br>
-                    <button onClick={()=>{saveDatatoFirebase()}}>
+                    <button onClick={(event)=>{
+                        uploadFile();
+                        uploadShopImage();
+                        saveDatatoFirebase(event);
+                        db.collection("users").doc(auth.currentUser.uid).set({
+                            fullName: fullName,
+                            email: email,
+                            address: address,
+                            city: city,
+                            shopName: shopName,
+                            shopRegistrationNumber: shopRegistrationNumber,
+                            mobileNumber: mobileNumber,
+                            password: password,
+                            profileImageReference: imageUpload,
+                            profession: "Vendor",
+                            status: "Checked",
+                            cnic: cnic,
+                            rating: "5",
+                            shopImageReference: shopImageUpload
+                        });
+                        alert("Data has been added successfully");
+                        }}>
                         <span></span>
                         <span></span>
                         <span></span>

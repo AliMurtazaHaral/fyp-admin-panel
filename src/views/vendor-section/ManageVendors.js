@@ -77,6 +77,7 @@ function ManageVendors() {
                                                         <img src={getImg(data.profileImageReference)} height={'80%'} width={200} />
                                                         <div class="content">
                                                             <span class="stars"></span>
+                                                            <p class="java">NAME: {data.fullName}</p>
                                                             <p class="java">CNIC: {data.cnic}</p>
                                                             <p class="java">EMAIL: {data.email}</p>
                                                             <p class="java">MOBILE NUMBER: {data.mobileNumber}</p>
@@ -90,9 +91,7 @@ function ManageVendors() {
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <div class="face face2">
-                                                        <h2>{data.fullName}</h2>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
 

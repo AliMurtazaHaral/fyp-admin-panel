@@ -82,12 +82,6 @@ const _nav = [
     to: '/rider-section/viewRider',
     icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: 'Manage Riders',
-    to: '/rider-section/manageRider',
-    icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
-  },
   
 ]
 

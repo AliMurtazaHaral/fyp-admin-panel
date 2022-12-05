@@ -16,11 +16,20 @@ import db from '../../firebase/Config'
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 const WidgetsDropdown = () => {
   const [totalUsers, setTotalUsers] = useState([]);
+  const [totalBookedMechanic, setTotalBookedMechanic] = useState([]);
   const [totalProducts, setTotalProducts] = useState([]);
   const [totalShopedProducts, setTotalShopedProducts] = useState([]);
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) => {
       setTotalUsers(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+    db.collection("book_mechanic").onSnapshot((snapshot) => {
+      setTotalBookedMechanic(
         snapshot.docs.map((doc) => ({
           id: doc.id,
           data: doc.data(),
@@ -49,7 +58,7 @@ const WidgetsDropdown = () => {
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
-          style={{backgroundColor: 'black'}}
+          style={{backgroundColor: '#321fdb',color:'white'}}
           value={
             <>
               {totalUsers.length}{' '}
@@ -61,7 +70,7 @@ const WidgetsDropdown = () => {
           title="Users"
           action={
             <CDropdown alignment="end">
-              <CDropdownToggle color="transparent" caret={false} className="p-0">
+              <CDropdownToggle color="white" caret={false} className="p-0">
                 <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
@@ -136,7 +145,7 @@ const WidgetsDropdown = () => {
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
-          style={{backgroundColor: 'black'}}
+          style={{backgroundColor: '#3399ff',color:'white'}}
           value={
             <>
               {totalProducts.length}{' '}
@@ -222,7 +231,7 @@ const WidgetsDropdown = () => {
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
-          style={{backgroundColor: 'black'}}
+          style={{backgroundColor: '#f9b116',color:'white'}}
           value={
             <>
               {totalShopedProducts.length}{' '}
@@ -296,16 +305,16 @@ const WidgetsDropdown = () => {
         <CWidgetStatsA
           className="mb-4"
           
-          style={{backgroundColor: 'black'}}
+          style={{backgroundColor: 'black',color:'white'}}
           value={
             <>
-              44K{' '}
+              {totalBookedMechanic.length}{' '}
               <span className="fs-6 fw-normal">
                 (-23.6% <CIcon icon={cilArrowBottom} />)
               </span>
             </>
           }
-          title="Sessions"
+          title="Booked Mechanic"
           action={
             <CDropdown alignment="end">
               <CDropdownToggle color="transparent" caret={false} className="p-0">

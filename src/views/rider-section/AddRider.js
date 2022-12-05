@@ -45,20 +45,7 @@ function AddRider() {
             cnic: cnic,
             rating:'5'
         });
-        db.collection("users").doc(auth.currentUser.uid).set({
-            fullName: fullName,
-            email: email,
-            address: address,
-            city: city,
-            bikeNumber: bikeNumber,
-            mobileNumber: mobileNumber,
-            password: password,
-            profession: "Rider",
-            profileImageReference: imageUpload,
-            cnic: cnic,
-            rating:'5'
-        });
-        alert("Data has been added successfully");
+        
     }
     const uploadFile = () => {
         if (imageUpload == null) return;
@@ -119,7 +106,25 @@ function AddRider() {
           
       <input type='file' onChange={(event)=>{setImageUpload(event.target.files[0])}} className="form-control"></input>
                     <br></br>
-                    <button onClick={saveDatatoFirebase}>
+
+                    <button onClick={(e)=>{
+                        saveDatatoFirebase(e);
+                        db.collection("users").doc(auth.currentUser.uid).set({
+                            fullName: fullName,
+                            email: email,
+                            address: address,
+                            city: city,
+                            bikeNumber: bikeNumber,
+                            mobileNumber: mobileNumber,
+                            password: password,
+                            profession: "Rider",
+                            profileImageReference: imageUpload,
+                            cnic: cnic,
+                            rating:'5'
+                        });
+                        alert("Data has been added successfully");
+                    }
+                        }>
                         <span></span>
                         <span></span>
                         <span></span>

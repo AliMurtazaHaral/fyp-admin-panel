@@ -45,32 +45,8 @@ function AddMechanic() {
         // ..
       });
       
-    uploadFile();
-    db.collection("users").doc(auth.currentUser.uid).set({
-      fullName: fullName,
-      email: email,
-      city: city,
-      mobileNumber: mobileNumber,
-      password: password,
-      category: category,
-      profession: "Mechanic",
-      profileImageReference: imageUpload.name,
-      cnic: cnic,
-      rating: '5'
-    });
-    db.collection("users").doc(auth.currentUser.uid).set({
-      fullName: fullName,
-      email: email,
-      city: city,
-      mobileNumber: mobileNumber,
-      password: password,
-      category: category,
-      profession: "Mechanic",
-      profileImageReference: imageUpload.name,
-      cnic: cnic,
-      rating: '5'
-    });
-    alert("Data has been added successfully");
+    
+    
   }
   
   const uploadFile = () => {
@@ -131,7 +107,23 @@ function AddMechanic() {
           
                     <br></br>
             
-            <button onClick={saveDatatoFirebase}>
+            <button onClick={(event)=>{
+              uploadFile();
+              saveDatatoFirebase(event);
+              db.collection("users").doc(auth.currentUser.uid).set({
+                fullName: fullName,
+                email: email,
+                city: city,
+                mobileNumber: mobileNumber,
+                password: password,
+                category: category,
+                profession: "Mechanic",
+                profileImageReference: imageUpload.name,
+                cnic: cnic,
+                rating: '5'
+              });
+              alert("Data has been added successfully");
+              }}>
               <span></span>
               <span></span>
               <span></span>
