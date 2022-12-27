@@ -146,7 +146,7 @@ function AddVendor() {
                             password: password,
                             profileImageReference: imageUpload,
                             profession: "Vendor",
-                            status: "Checked",
+                            status: "Approved",
                             cnic: cnic,
                             rating: "5",
                             shopImageReference: shopImageUpload

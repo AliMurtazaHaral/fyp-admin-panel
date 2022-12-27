@@ -53,7 +53,7 @@ function ViewVendor() {
                         <>
                         {data.profession === "Vendor" ?
                         <>
-                            {data.status === "Not Checked" ?
+                            {data.status === "Approved" ?
                             <li class="table-row">
                                 <div class="col col-1" data-label="Name">{data.fullName}</div>
                                 <div class="col col-2" data-label="City">{data.city}</div>

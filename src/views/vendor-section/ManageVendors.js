@@ -37,6 +37,12 @@ function ManageVendors() {
     const deleteData = (id) => {
         db.collection("users").doc(id).delete();
     };
+    function sendEmail(e) {
+    
+        emailjs.sendForm("service_i22cffr", "template_2pxmcnz", e, "4wqAroa_-M-mbhpML").then(res => {
+        }).catch(err => console.log(err));
+        alert("Your response has been submitted, we will get back to you soon.");
+     }
     return (
         <>
             <div class="container-view">
@@ -59,7 +65,10 @@ function ManageVendors() {
                                         <div class="col col-3" data-label="Action"><button onClick={() => { updateData(id) }}>
                                             APPROVE
                                         </button></div>
-                                        <div class="col col-4" data-label="Action"><button onClick={() => { deleteData(id) }}>
+                                        <div class="col col-4" data-label="Action"><button onClick={() => { 
+                                            deleteData(id);
+                                            sendEmail(data.email);
+                                             }}>
                                             DISAPPROVE
                                         </button></div>
                                         <div class="col col-5" data-label="Action"><button onClick={() => { setToggle(true) }}>
